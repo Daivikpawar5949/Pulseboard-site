@@ -25,6 +25,7 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         /* Shared button base */
@@ -53,110 +54,17 @@
             cursor: default;
         }
 
-        /* Icon button style */
-        .icon-button {
-            padding: 6px;
-            border-radius: 50%;
-            background-color: transparent;
-            color: #aaa;
-            transition: color 0.25s ease;
-        }
-        .icon-button:hover, .icon-button.active {
-            color: #5adee8;
-        }
-
-        /* Material Icons sizing */
-        .material-icons.md-18 { font-size: 18px; }
-        .material-icons.md-24 { font-size: 24px; }
-        .material-icons.md-36 { font-size: 36px; }
-        .material-icons.md-48 { font-size: 48px; }
-
-        /* Hide all pages by default */
-        .page {
-            display: none;
-            height: 100%;
-            overflow: hidden;
-        }
-        .page.active {
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* ========== Sign-In Page ========== */
-        #sign-in-page {
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(120deg, #2a2a40, #121212);
-        }
-        #sign-in-container {
-            background-color: #232332dd;
-            padding: 48px 32px;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 173, 255, 0.2);
-            min-width: 320px;
-            width: 100%;
-            max-width: 380px;
-        }
-        #sign-in-container h1 {
-            font-weight: 700;
-            font-size: 2.5rem;
-            margin-bottom: 24px;
-            color: #5adee8;
-            text-align: center;
-            user-select: none;
-        }
-        #sign-in-container label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            color: #aadcee;
-        }
-        #sign-in-container input[type="text"] {
-            width: 100%;
-            padding: 12px 14px;
-            font-size: 1rem;
-            border-radius: 8px;
-            border: none;
-            background-color: #1e1e2f;
-            color: #eee;
-            margin-bottom: 24px;
-        }
-        #sign-in-container input[type="text"]::placeholder {
-            color: #888;
-        }
-        #sign-in-container button {
-            width: 100%;
-            font-size: 1.2rem;
-            background-color: #5adee8;
-            color: #121212;
-            font-weight: 700;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(90, 222, 232, 0.6);
-        }
-        #sign-in-container button:disabled {
-            background-color: #399fac;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
-
-        /* ========== PulseBoard Main App ========== */
+        /* PulseBoard Main App */
         #pulseboard-page {
             flex: 1 1 auto;
-            display: grid;
-            grid-template-columns: 280px 1fr 320px;
-            grid-template-rows: auto 1fr auto;
-            grid-template-areas:
-            "header header header"
-            "profile news chat"
-            "profile news chat";
-            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
             background: linear-gradient(135deg, #121212cc, #1e1e2fcc);
         }
 
         /* Header area */
         header#main-header {
-            grid-area: header;
             background-color: #18182fcc;
             padding: 0 24px;
             display: flex;
@@ -171,88 +79,17 @@
             font-size: 1.75rem;
             color: #5adee8;
         }
-        #signout-btn {
-            display: none; /* Initially hidden */
-            background: transparent;
-            color: #5adee8;
-            border: 2px solid #5adee8;
-            padding: 6px 18px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
-        }
-        #signout-btn:hover {
-            background-color: #5adee8;
-            color: #121212;
-        }
 
-        /* Profile sidebar */
-        #profile-sidebar {
-            grid-area: profile;
-            background-color: #232332cc;
-            padding: 20px;
+        /* Main content area */
+        #content {
+            flex: 1;
             display: flex;
-            flex-direction: column;
-            gap: 16px;
-            overflow-y: auto;
-        }
-        #profile-sidebar h2 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #5adee8;
-            margin: 0 0 12px 0;
-        }
-        #profile-sidebar .pfp {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background-color: #444466;
-            background-size: cover;
-            background-position: center;
-            margin: 0 auto 14px auto;
-            border: 3px solid #5adee8;
-        }
-        #profile-sidebar label {
-            font-weight: 600;
-            font-size: 0.9rem;
-            user-select: none;
-            display: block;
-            margin-bottom: 4px;
-        }
-        #profile-sidebar input[type="text"],
-        #profile-sidebar input[type="number"],
-        #profile-sidebar textarea {
-            width: 100%;
-            background-color: #1e1e2f;
-            border: none;
-            border-radius: 8px;
-            color: #eee;
-            padding: 8px 12px;
-            font-size: 0.9rem;
-            font-family: inherit;
-            margin-bottom: 12px;
-            resize: vertical;
-        }
-        #profile-sidebar textarea {
-            min-height: 60px;
-        }
-        #profile-sidebar input[type="file"] {
-            padding: 4px;
-            margin-bottom: 14px;
-            color: #eee;
-        }
-        #profile-sidebar button {
-            background-color: #5adee8;
-            color: #121212;
-            font-weight: 700;
-            font-size: 1rem;
-            margin-top: auto;
+            position: relative;
         }
 
         /* News area */
         #news-section {
-            grid-area: news;
+            flex: 1;
             display: flex;
             flex-direction: column;
             padding: 24px;
@@ -320,85 +157,95 @@
             vertical-align: middle;
         }
 
-        /* News like/dislike controls */
-        .news-actions {
-            margin-top: auto;
-            display: flex;
-            justify-content: flex-end;
-            gap: 24px;
-        }
-        .news-actions button {
-            background: transparent;
-            color: #aaa;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 8px;
-            border-radius: 8px;
-        }
-        .news-actions button.active {
-            color: #5adee8;
-        }
-        .news-actions button:hover {
-            color: #5adee8;
-        }
-
-        /* News detail modal */
-        #news-modal-backdrop {
-            position: fixed;
-            inset: 0;
-            background-color: rgba(12, 12, 20, 0.85);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-        }
-        #news-modal-backdrop.active {
-            display: flex;
-        }
-        #news-modal {
-            background-color: #232332ee;
-            width: 90%;
-            max-width: 700px;
-            border-radius: 18px;
-            padding: 24px 32px;
-            box-shadow: 0 0 40px #5adee8aa;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-        #news-modal h2 {
-            margin-top: 0;
-            color: #5adee8;
-        }
-        #news-modal p {
-            line-height: 1.6;
-            color: #ccc;
-        }
-        #news-modal .close-btn {
+        /* Profile sidebar */
+        #profile-sidebar {
             position: absolute;
-            top: 16px;
-            right: 16px;
-            background: transparent;
-            font-size: 28px;
-            color: #5adee8;
-            font-weight: 700;
-            cursor: pointer;
-            border: none;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background-color: #232332cc;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
         }
-        #news-modal .close-btn:hover {
-            color: #aadcee;
+        #profile-sidebar.active {
+            transform: translateX(0);
+        }
+        #profile-sidebar h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #5adee8;
+            margin: 0 0 12px 0;
+        }
+        #profile-sidebar .pfp {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #444466;
+            background-size: cover;
+            background-position: center;
+            margin: 0 auto 14px auto;
+            border: 3px solid #5adee8;
+        }
+        #profile-sidebar label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            user-select: none;
+            display: block;
+            margin-bottom: 4px;
+        }
+        #profile-sidebar input[type="text"],
+        #profile-sidebar input[type="number"],
+        #profile-sidebar textarea {
+            width: 100%;
+            background-color: #1e1e2f;
+            border: none;
+            border-radius: 8px;
+            color: #eee;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            margin-bottom: 12px;
+            resize: vertical;
+        }
+        #profile-sidebar textarea {
+            min-height: 60px;
+        }
+        #profile-sidebar input[type="file"] {
+            padding: 4px;
+            margin-bottom: 14px;
+            color: #eee;
+        }
+        #profile-sidebar button {
+            background-color: #5adee8;
+            color: #121212;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-top: auto;
         }
 
         /* Chat section */
         #chat-section {
-            grid-area: chat;
-            display: flex;
-            flex-direction: column;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
             background-color: #232332cc;
             padding: 16px 20px;
             border-left: 1px solid #333344;
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        #chat-section.active {
+            transform: translateX(0);
         }
         #chat-messages {
             flex: 1 1 auto;
@@ -462,6 +309,32 @@
             cursor: not-allowed;
         }
 
+        /* Floating action buttons */
+        .fab {
+            position: absolute;
+            bottom: 20px;
+            background-color: #5adee8;
+            color: #121212;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .fab:hover {
+            background-color: #4bc6d4;
+        }
+        .fab.profile {
+            right: 80px;
+        }
+        .fab.chat {
+            right: 20px;
+        }
+
         /* Scrollbars */
         ::-webkit-scrollbar {
             width: 8px;
@@ -477,78 +350,88 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #5adee8ee;
         }
-
-        /* Responsive adjustments */
-        @media (max-width: 1024px) {
-            #pulseboard-page {
-                grid-template-columns: 1fr 1fr;
-                grid-template-areas:
-                "header header"
-                "news chat"
-                "profile chat";
-            }
-            #profile-sidebar {
-                order: 3;
-                height: 240px;
-                overflow-y: auto;
-            }
-            #chat-section {
-                order: 2;
-                grid-area: chat;
-                border-left: none;
-                border-top: 1px solid #333344;
-            }
-        }
-        @media (max-width: 640px) {
-            #pulseboard-page {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto 1fr 300px 60px;
-                grid-template-areas:
-                "header"
-                "news"
-                "chat"
-                "profile";
-            }
-            #profile-sidebar {
-                order: 4;
-                height: 220px;
-                overflow-y: auto;
-                border-top: 1px solid #333344;
-            }
-            #chat-section {
-                order: 3;
-                height: 300px;
-                border-left: none;
-                border-top: 1px solid #333344;
-            }
-        }
     </style>
 </head>
 <body>
     <div id="app" role="main">
-        <!-- SIGN-IN PAGE -->
-        <section id="sign-in-page" class="page active" aria-label="Sign in page">
-            <div id="sign-in-container" role="form" aria-labelledby="sign-in-title">
-                <h1 id="sign-in-title">Welcome to PulseBoard</h1>
-                <label for="signin-username">Enter your username</label>
-                <input type="text" id="signin-username" name="signin-username" placeholder="Your username" aria-required="true" autocomplete="username" />
-                <button id="signin-btn" type="button" disabled>Sign In</button>
-            </div>
-        </section>
-
         <!-- MAIN PULSEBOARD PAGE -->
-        <section id="pulseboard-page" class="page" aria-label="PulseBoard main application">
+        <section id="pulseboard-page" class="page active" aria-label="PulseBoard main application">
             <header id="main-header" role="banner">
                 <h1>PulseBoard</h1>
-                <button id="signout-btn" title="Sign Out" aria-label="Sign out">Sign Out</button>
             </header>
 
-            <aside id="profile-sidebar" role="complementary" aria-label="User  profile editing area">
-                <h2>My Profile</h2>
-                <div class="pfp" id="profile-pfp" aria-label="Profile picture" tabindex="0"></div>
-                <label for="pfp-upload">Change Profile Picture</label>
-                <input type="file" id="pfp-upload" accept="image/*" aria-describedby="pfp-upload-desc"/>
-                <div id="pfp-upload-desc" class="sr-only">Select an image file to update your profile picture</div>
+            <div id="content">
+                <section id="news-section" aria-label="News area">
+                    <div id="news-filter">
+                        <select>
+                            <option value="all">All News</option>
+                            <option value="latest">Latest</option>
+                            <option value="popular">Popular</option>
+                        </select>
+                    </div>
+                    <div class="news-card">
+                        <h3>News Title</h3>
+                        <p class="news-summary">Summary of the news article goes here...</p>
+                        <div class="news-meta">
+                            <span>Author</span>
+                            <span>Date</span>
+                        </div>
+                    </div>
+                    <!-- More news cards can be added here -->
+                </section>
 
-                <label for="profile-name">Name</label>
-                <input type="text" id="profile-name
+                <aside id="profile-sidebar" role="complementary" aria-label="User  profile editing area">
+                    <h2>My Profile</h2>
+                    <div class="pfp" id="profile-pfp" aria-label="Profile picture" tabindex="0"></div>
+                    <label for="pfp-upload">Change Profile Picture</label>
+                    <input type="file" id="pfp-upload" accept="image/*" aria-describedby="pfp-upload-desc"/>
+                    <div id="pfp-upload-desc" class="sr-only">Select an image file to update your profile picture</div>
+
+                    <label for="profile-name">Name</label>
+                    <input type="text" id="profile-name" placeholder="Your name" />
+                    <!-- Additional profile fields can be added here -->
+                </aside>
+
+                <section id="chat-section" aria-label="Chat area">
+                    <div id="chat-messages">
+                        <div class="chat-message sent">
+                            <p>Hello, how can I help you?</p>
+                            <div class="meta">10:00 AM</div>
+                        </div>
+                        <!-- More chat messages can be added here -->
+                    </div>
+                    <div id="chat-input-area">
+                        <textarea id="chat-input" placeholder="Type your message..."></textarea>
+                        <button id="chat-send-btn">Send</button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Floating Action Buttons -->
+            <div class="fab profile" id="profile-btn" title="Profile" aria-label="Profile">
+                <span class="material-icons">person</span>
+            </div>
+            <div class="fab chat" id="chat-btn" title="Chat" aria-label="Chat">
+                <span class="material-icons">chat</span>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const profileBtn = document.getElementById('profile-btn');
+        const chatBtn = document.getElementById('chat-btn');
+        const profileSidebar = document.getElementById('profile-sidebar');
+        const chatSection = document.getElementById('chat-section');
+
+        profileBtn.addEventListener('click', () => {
+            profileSidebar.classList.toggle('active');
+            chatSection.classList.remove('active');
+        });
+
+        chatBtn.addEventListener('click', () => {
+            chatSection.classList.toggle('active');
+            profileSidebar.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
