@@ -312,7 +312,7 @@
         /* Floating action buttons */
         .fab {
             position: absolute;
-            bottom: 20px;
+            top: 20px;
             background-color: #5adee8;
             color: #121212;
             border-radius: 50%;
@@ -369,69 +369,34 @@
                             <option value="popular">Popular</option>
                         </select>
                     </div>
+
+                    <!-- News Card 1 -->
                     <div class="news-card">
-                        <h3>News Title</h3>
-                        <p class="news-summary">Summary of the news article goes here...</p>
+                        <a href="https://www.bbc.com/news/world-us-canada-63212345" target="_blank">
+                            <img src="https://ichef.bbci.co.uk/news/1024/branded_news/12B1D/production/_126123456_gettyimages-1234567890.jpg" alt="US-Canada border" style="width:100%; border-radius: 10px;">
+                            <h3>US-Canada Border: New Measures to Tackle Smuggling</h3>
+                            <p class="news-summary">The US and Canada have announced new measures to tackle smuggling across their border.</p>
+                        </a>
                         <div class="news-meta">
-                            <span>Author</span>
-                            <span>Date</span>
+                            <span>BBC News</span>
+                            <span>October 10, 2023</span>
                         </div>
                     </div>
-                    <!-- More news cards can be added here -->
-                </section>
 
-                <aside id="profile-sidebar" role="complementary" aria-label="User  profile editing area">
-                    <h2>My Profile</h2>
-                    <div class="pfp" id="profile-pfp" aria-label="Profile picture" tabindex="0"></div>
-                    <label for="pfp-upload">Change Profile Picture</label>
-                    <input type="file" id="pfp-upload" accept="image/*" aria-describedby="pfp-upload-desc"/>
-                    <div id="pfp-upload-desc" class="sr-only">Select an image file to update your profile picture</div>
-
-                    <label for="profile-name">Name</label>
-                    <input type="text" id="profile-name" placeholder="Your name" />
-                    <!-- Additional profile fields can be added here -->
-                </aside>
-
-                <section id="chat-section" aria-label="Chat area">
-                    <div id="chat-messages">
-                        <div class="chat-message sent">
-                            <p>Hello, how can I help you?</p>
-                            <div class="meta">10:00 AM</div>
+                    <!-- News Card 2 -->
+                    <div class="news-card">
+                        <a href="https://www.cnn.com/2023/10/10/world/ukraine-russia-war-october-10/index.html" target="_blank">
+                            <img src="https://cdn.cnn.com/cnnnext/dam/assets/230910123456-ukraine-russia-war.jpg" alt="Ukraine War" style="width:100%; border-radius: 10px;">
+                            <h3>Ukraine War: Latest Developments</h3>
+                            <p class="news-summary">Ukraine continues to face challenges as the war with Russia escalates.</p>
+                        </a>
+                        <div class="news-meta">
+                            <span>CNN</span>
+                            <span>October 10, 2023</span>
                         </div>
-                        <!-- More chat messages can be added here -->
                     </div>
-                    <div id="chat-input-area">
-                        <textarea id="chat-input" placeholder="Type your message..."></textarea>
-                        <button id="chat-send-btn">Send</button>
-                    </div>
-                </section>
-            </div>
 
-            <!-- Floating Action Buttons -->
-            <div class="fab profile" id="profile-btn" title="Profile" aria-label="Profile">
-                <span class="material-icons">person</span>
-            </div>
-            <div class="fab chat" id="chat-btn" title="Chat" aria-label="Chat">
-                <span class="material-icons">chat</span>
-            </div>
-        </section>
-    </div>
-
-    <script>
-        const profileBtn = document.getElementById('profile-btn');
-        const chatBtn = document.getElementById('chat-btn');
-        const profileSidebar = document.getElementById('profile-sidebar');
-        const chatSection = document.getElementById('chat-section');
-
-        profileBtn.addEventListener('click', () => {
-            profileSidebar.classList.toggle('active');
-            chatSection.classList.remove('active');
-        });
-
-        chatBtn.addEventListener('click', () => {
-            chatSection.classList.toggle('active');
-            profileSidebar.classList.remove('active');
-        });
-    </script>
-</body>
-</html>
+                    <!-- News Card 3 -->
+                    <div class="news-card">
+                        <a href="https://www.reuters.com/world/us/us-economy-growth-forecast-2023-10-10/" target="_blank">
+                            <img src="https://www.reuters.com/resizer/8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8
