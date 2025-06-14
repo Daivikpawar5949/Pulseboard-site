@@ -25,9 +25,7 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            position: relative;
         }
-
         /* Shared button base */
         button {
             cursor: pointer;
@@ -53,18 +51,51 @@
             opacity: 0.4;
             cursor: default;
         }
+        /* Icon button style */
+        .icon-button {
+            padding: 6px;
+            border-radius: 50%;
+            background-color: transparent;
+            color: #aaa;
+            transition: color 0.25s ease;
+        }
+        .icon-button:hover, .icon-button.active {
+            color: #5adee8;
+        }
 
-        /* PulseBoard Main App */
-        #pulseboard-page {
-            flex: 1 1 auto;
+        /* Material Icons sizing */
+        .material-icons.md-18 { font-size: 18px; }
+        .material-icons.md-24 { font-size: 24px; }
+        .material-icons.md-36 { font-size: 36px; }
+        .material-icons.md-48 { font-size: 48px; }
+
+        /* Hide all pages by default */
+        .page {
+            display: none;
+            height: 100%;
+            overflow: hidden;
+        }
+        .page.active {
             display: flex;
             flex-direction: column;
-            height: 100%;
+        }
+
+        /* ========== PulseBoard Main App ========== */
+        #pulseboard-page {
+            flex: 1 1 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr;
+            grid-template-areas:
+            "header"
+            "news";
+            height: 100vh;
             background: linear-gradient(135deg, #121212cc, #1e1e2fcc);
         }
 
         /* Header area */
         header#main-header {
+            grid-area: header;
             background-color: #18182fcc;
             padding: 0 24px;
             display: flex;
@@ -80,16 +111,9 @@
             color: #5adee8;
         }
 
-        /* Main content area */
-        #content {
-            flex: 1;
-            display: flex;
-            position: relative;
-        }
-
         /* News area */
         #news-section {
-            flex: 1;
+            grid-area: news;
             display: flex;
             flex-direction: column;
             padding: 24px;
@@ -157,95 +181,13 @@
             vertical-align: middle;
         }
 
-        /* Profile sidebar */
-        #profile-sidebar {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 100%;
-            background-color: #232332cc;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            overflow-y: auto;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-        }
-        #profile-sidebar.active {
-            transform: translateX(0);
-        }
-        #profile-sidebar h2 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #5adee8;
-            margin: 0 0 12px 0;
-        }
-        #profile-sidebar .pfp {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background-color: #444466;
-            background-size: cover;
-            background-position: center;
-            margin: 0 auto 14px auto;
-            border: 3px solid #5adee8;
-        }
-        #profile-sidebar label {
-            font-weight: 600;
-            font-size: 0.9rem;
-            user-select: none;
-            display: block;
-            margin-bottom: 4px;
-        }
-        #profile-sidebar input[type="text"],
-        #profile-sidebar input[type="number"],
-        #profile-sidebar textarea {
-            width: 100%;
-            background-color: #1e1e2f;
-            border: none;
-            border-radius: 8px;
-            color: #eee;
-            padding: 8px 12px;
-            font-size: 0.9rem;
-            font-family: inherit;
-            margin-bottom: 12px;
-            resize: vertical;
-        }
-        #profile-sidebar textarea {
-            min-height: 60px;
-        }
-        #profile-sidebar input[type="file"] {
-            padding: 4px;
-            margin-bottom: 14px;
-            color: #eee;
-        }
-        #profile-sidebar button {
-            background-color: #5adee8;
-            color: #121212;
-            font-weight: 700;
-            font-size: 1rem;
-            margin-top: auto;
-        }
-
         /* Chat section */
         #chat-section {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 100%;
+            display: none; /* Initially hidden */
+            flex-direction: column;
             background-color: #232332cc;
             padding: 16px 20px;
             border-left: 1px solid #333344;
-            display: flex;
-            flex-direction: column;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-        }
-        #chat-section.active {
-            transform: translateX(0);
         }
         #chat-messages {
             flex: 1 1 auto;
@@ -309,30 +251,67 @@
             cursor: not-allowed;
         }
 
-        /* Floating action buttons */
-        .fab {
-            position: absolute;
-            top: 20px;
+        /* Profile sidebar */
+        #profile-sidebar {
+            display: none; /* Initially hidden */
+            background-color: #232332cc;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            overflow-y: auto;
+        }
+        #profile-sidebar h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #5adee8;
+            margin: 0 0 12px 0;
+        }
+        #profile-sidebar .pfp {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #444466;
+            background-size: cover;
+            background-position: center;
+            margin: 0 auto 14px auto;
+            border: 3px solid #5adee8;
+        }
+        #profile-sidebar label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            user-select: none;
+            display: block;
+            margin-bottom: 4px;
+        }
+        #profile-sidebar input[type="text"],
+        #profile-sidebar input[type="number"],
+        #profile-sidebar textarea {
+            width: 100%;
+            background-color: #1e1e2f;
+            border: none;
+            border-radius: 8px;
+            color: #eee;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            margin-bottom: 12px;
+            resize: vertical;
+        }
+        #profile-sidebar textarea {
+            min-height: 60px;
+        }
+        #profile-sidebar input[type="file"] {
+            padding: 4px;
+            margin-bottom: 14px;
+            color: #eee;
+        }
+        #profile-sidebar button {
             background-color: #5adee8;
             color: #121212;
-            border-radius: 50%;
-            width: 56px;
-            height: 56px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .fab:hover {
-            background-color: #4bc6d4;
-        }
-        .fab.profile {
-            right: 80px;
-        }
-        .fab.chat {
-            right: 20px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-top: auto;
         }
 
         /* Scrollbars */
@@ -350,6 +329,51 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #5adee8ee;
         }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            #pulseboard-page {
+                grid-template-columns: 1fr 1fr;
+                grid-template-areas:
+                "header header"
+                "news chat"
+                "profile chat";
+            }
+            #profile-sidebar {
+                order: 3;
+                height: 240px;
+                overflow-y: auto;
+            }
+            #chat-section {
+                order: 2;
+                grid-area: chat;
+                border-left: none;
+                border-top: 1px solid #333344;
+            }
+        }
+        @media (max-width: 640px) {
+            #pulseboard-page {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr 300px 60px;
+                grid-template-areas:
+                "header"
+                "news"
+                "chat"
+                "profile";
+            }
+            #profile-sidebar {
+                order: 4;
+                height: 220px;
+                overflow-y: auto;
+                border-top: 1px solid #333344;
+            }
+            #chat-section {
+                order: 3;
+                height: 300px;
+                border-left: none;
+                border-top: 1px solid #333344;
+            }
+        }
     </style>
 </head>
 <body>
@@ -358,45 +382,110 @@
         <section id="pulseboard-page" class="page active" aria-label="PulseBoard main application">
             <header id="main-header" role="banner">
                 <h1>PulseBoard</h1>
+                <div>
+                    <button id="profile-btn" class="icon-button" aria-label="Profile" onclick="toggleProfile()">
+                        <span class="material-icons md-24">person</span>
+                    </button>
+                    <button id="chat-btn" class="icon-button" aria-label="Chat" onclick="toggleChat()">
+                        <span class="material-icons md-24">chat</span>
+                    </button>
+                </div>
             </header>
+            <main id="news-section" role="main" aria-label="News feed and filters">
+                <div id="news-filter" role="search">
+                    <label for="filter-category" class="sr-only">Filter news by category</label>
+                    <select id="filter-category" aria-label="Filter news by category">
+                        <option value="all" selected>All categories</option>
+                    </select>
+                </div>
+                <div id="news-list" tabindex="0" aria-live="polite" aria-relevant="additions" aria-atomic="false" role="list">
+                    <!-- news cards dynamically injected here -->
+                </div>
+            </main>
+            <aside id="chat-section" role="complementary" aria-label="Chat box for sharing news and discussions">
+                <div id="chat-messages" role="log" aria-live="polite" aria-relevant="additions" tabindex="0">
+                    <!-- chat messages -->
+                </div>
+                <div id="chat-input-area">
+                    <textarea id="chat-input" aria-label="Type your message" placeholder="Type your message here..." rows="1"></textarea>
+                    <button id="chat-send-btn" disabled aria-label="Send message">
+                        <span class="material-icons md-24">send</span>
+                    </button>
+                </div>
+            </aside>
+            <aside id="profile-sidebar" role="complementary" aria-label="User  profile editing area">
+                <h2>My Profile</h2>
+                <div class="pfp" id="profile-pfp" aria-label="Profile picture" tabindex="0"></div>
+                <label for="pfp-upload">Change Profile Picture</label>
+                <input type="file" id="pfp-upload" accept="image/*" aria-describedby="pfp-upload-desc"/>
+                <div id="pfp-upload-desc" class="sr-only">Select an image file to update your profile picture</div>
+                <label for="profile-name">Name</label>
+                <input type="text" id="profile-name" name="profile-name" aria-describedby="profile-name-desc" />
+                <div id="profile-name-desc" class="sr-only">Enter your full name</div>
+                <label for="profile-age">Age</label>
+                <input type="number" id="profile-age" name="profile-age" min="0" max="150" aria-describedby="profile-age-desc" />
+                <div id="profile-age-desc" class="sr-only">Enter your age</div>
+                <label for="profile-about">About</label>
+                <textarea id="profile-about" name="profile-about" rows="3" aria-describedby="profile-about-desc"></textarea>
+                <div id="profile-about-desc" class="sr-only">Write a few lines about yourself</div>
+                <label for="profile-interests">Interests (comma-separated)</label>
+                <input type="text" id="profile-interests" aria-describedby="profile-interests-desc" />
+                <div id="profile-interests-desc" class="sr-only">Enter your interests separated by commas</div>
+                <label for="profile-skills">Skills (comma-separated)</label>
+                <input type="text" id="profile-skills" aria-describedby="profile-skills-desc" />
+                <div id="profile-skills-desc" class="sr-only">Enter your skills separated by commas</div>
+                <button id="save-profile-btn" type="button" aria-live="polite">Save Profile</button>
+            </aside>
+        </section>
+        <!-- NEWS MODAL -->
+        <div id="news-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="news-modal-title" tabindex="-1">
+            <div id="news-modal">
+                <button class="close-btn" aria-label="Close news details">&times;</button>
+                <h2 id="news-modal-title"></h2>
+                <p id="news-modal-content"></p>
+            </div>
+        </div>
+    </div>
+    <!-- Screen reader only class -->
+    <style>
+        .sr-only {
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            margin: -1px !important;
+            overflow: hidden !important;
+            clip: rect(0,0,0,0) !important;
+            white-space: nowrap !important;
+            border: 0 !important;
+        }
+    </style>
+    <script>
+        (() => {
+            // Util: debounce
+            function debounce(func, wait) {
+                let timeout;
+                return function(...args) {
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => func.apply(this, args), wait);
+                };
+            }
 
-            <div id="content">
-                <section id="news-section" aria-label="News area">
-                    <div id="news-filter">
-                        <select>
-                            <option value="all">All News</option>
-                            <option value="latest">Latest</option>
-                            <option value="popular">Popular</option>
-                        </select>
-                    </div>
+            // Toggle visibility of chat and profile sections
+            function toggleChat() {
+                const chatSection = document.getElementById('chat-section');
+                const profileSection = document.getElementById('profile-sidebar');
+                chatSection.style.display = chatSection.style.display === 'flex' ? 'none' : 'flex';
+                profileSection.style.display = 'none'; // Hide profile when chat is shown
+            }
 
-                    <!-- News Card 1 -->
-                    <div class="news-card">
-                        <a href="https://www.bbc.com/news/world-us-canada-63212345" target="_blank">
-                            <img src="https://ichef.bbci.co.uk/news/1024/branded_news/12B1D/production/_126123456_gettyimages-1234567890.jpg" alt="US-Canada border" style="width:100%; border-radius: 10px;">
-                            <h3>US-Canada Border: New Measures to Tackle Smuggling</h3>
-                            <p class="news-summary">The US and Canada have announced new measures to tackle smuggling across their border.</p>
-                        </a>
-                        <div class="news-meta">
-                            <span>BBC News</span>
-                            <span>October 10, 2023</span>
-                        </div>
-                    </div>
-
-                    <!-- News Card 2 -->
-                    <div class="news-card">
-                        <a href="https://www.cnn.com/2023/10/10/world/ukraine-russia-war-october-10/index.html" target="_blank">
-                            <img src="https://cdn.cnn.com/cnnnext/dam/assets/230910123456-ukraine-russia-war.jpg" alt="Ukraine War" style="width:100%; border-radius: 10px;">
-                            <h3>Ukraine War: Latest Developments</h3>
-                            <p class="news-summary">Ukraine continues to face challenges as the war with Russia escalates.</p>
-                        </a>
-                        <div class="news-meta">
-                            <span>CNN</span>
-                            <span>October 10, 2023</span>
-                        </div>
-                    </div>
-
-                    <!-- News Card 3 -->
-                    <div class="news-card">
-                        <a href="https://www.reuters.com/world/us/us-economy-growth-forecast-2023-10-10/" target="_blank">
-                            <img src="https://www.reuters.com/resizer/8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8g8
+            function toggleProfile() {
+                const profileSection = document.getElementById('profile-sidebar');
+                const chatSection = document.getElementById('chat-section');
+                profileSection.style.display = profileSection.style.display === 'flex' ? 'none' : 'flex';
+                chatSection.style.display = 'none'; // Hide chat when profile is shown
+            }
+        })();
+    </script>
+</body>
+</html>
